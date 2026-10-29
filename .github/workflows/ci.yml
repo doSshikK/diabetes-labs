@@ -1,0 +1,41 @@
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pre-commit pandas
+
+      - name: Run pre-commit
+        run: pre-commit run --all-files
+
+      - name: Verify dataset hash
+        run: python src/features/hash_data.py verify
+
+      - name: Check EDA reproducibility
+        run: |
+          cp reports/LAB1/eda_stats.csv /tmp/eda_stats_expected.csv
+          python src/features/eda_stats.py
+          cmp reports/LAB1/eda_stats.csv /tmp/eda_stats_expected.csv
