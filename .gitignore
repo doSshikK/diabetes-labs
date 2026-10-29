@@ -1,0 +1,35 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Cache
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# MLflow
+mlruns/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Temporary files
+*.tmp
+*.bak

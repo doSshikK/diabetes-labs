@@ -1,0 +1,21 @@
+# Automatic text file detection
+* text=auto
+
+# Source code and configuration
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.csv text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.zip binary
+*.joblib binary
+*.pt binary
+*.npz binary
+*.mp4 binary
