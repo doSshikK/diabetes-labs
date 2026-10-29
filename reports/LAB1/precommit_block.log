@@ -1,0 +1,72 @@
+ruff (legacy alias)......................................................Failed
+- hook id: ruff
+- exit code: 1
+
+F401 [*] `os` imported but unused
+ --> tests/negative_style.py:1:8
+  |
+1 | import os
+  |        ^^
+help: Remove unused import: `os`
+  |
+  - import os
+  |
+
+Found 1 error.
+[*] 1 fixable with `--fix`.
+
+trim trailing whitespace.................................................Passed
+fix end of files.........................................................Passed
+check yaml...........................................(no files to check)Skipped
+check for merge conflicts................................................Passed
+check for added large files..............................................Passed
+detect private key.......................................................Passed
+Detect secrets...........................................................Passed
+ruff (legacy alias)..................................(no files to check)Skipped
+trim trailing whitespace.................................................Passed
+fix end of files.........................................................Passed
+check yaml...........................................(no files to check)Skipped
+check for merge conflicts................................................Passed
+check for added large files..............................................Passed
+detect private key.......................................................Failed
+- hook id: detect-private-key
+- exit code: 1
+
+Private key found: tests/negative_secret.txt
+
+Detect secrets...........................................................Failed
+- hook id: detect-secrets
+- exit code: 1
+
+ERROR: Potential secrets about to be committed to git repo!
+
+Secret Type: Private Key
+Location:    tests/negative_secret.txt:1
+
+Possible mitigations:
+  - For information about putting your secrets in a safer place, please ask in
+    #security
+  - Mark false positives with an inline `pragma: allowlist secret` comment
+
+If a secret has already been committed, visit
+https://help.github.com/articles/removing-sensitive-data-from-a-repository
+
+ruff (legacy alias)..................................(no files to check)Skipped
+trim trailing whitespace.................................................Passed
+fix end of files.........................................................Failed
+- hook id: end-of-file-fixer
+- exit code: 1
+- files were modified by this hook
+
+Fixing tests/negative_large.bin
+
+check yaml...........................................(no files to check)Skipped
+check for merge conflicts................................................Passed
+check for added large files..............................................Failed
+- hook id: check-added-large-files
+- exit code: 1
+
+tests/negative_large.bin (601 KB) exceeds 500 KB.
+
+detect private key.......................................................Passed
+Detect secrets...........................................................Passed

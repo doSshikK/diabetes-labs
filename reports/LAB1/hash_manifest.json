@@ -1,0 +1,12 @@
+{
+    "dataset": "Diabetes",
+    "source": "sklearn.datasets.load_diabetes",
+    "algorithm": "sha256",
+    "files": [
+        {
+            "path": "data/raw/diabetes.csv",
+            "sha256": "f16718c1e6602b419193b9a023dbe278ae7f85ff343158813d7040a9f7512dec",
+            "size_bytes": 95137
+        }
+    ]
+}
