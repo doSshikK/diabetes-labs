@@ -1,0 +1,116 @@
+{
+  "config": {
+    "data_path": "data/raw/diabetes.csv",
+    "processed_dir": "data/processed",
+    "report_dir": "reports/LAB2",
+    "model_path": "reports/LAB2/ml_model.joblib",
+    "scaler": "standard",
+    "model": "sgd_regressor",
+    "loss": "squared_error",
+    "penalty": "elasticnet",
+    "seed": 42,
+    "chunk_size": 64,
+    "test_size": 0.2,
+    "validation_size": 0.2,
+    "epochs": 60,
+    "eta0": 0.01,
+    "alpha_grid": [
+      0.0001,
+      0.001,
+      0.01
+    ],
+    "l1_ratio_grid": [
+      0.15,
+      0.5,
+      0.9
+    ],
+    "elastic_net_max_iter": 10000,
+    "elastic_net_tol": 1e-06,
+    "bootstrap_samples": 1000,
+    "ci_level": 0.95
+  },
+  "data_sha256": "f16718c1e6602b419193b9a023dbe278ae7f85ff343158813d7040a9f7512dec",
+  "split_rows": {
+    "train": 264,
+    "validation": 89,
+    "test": 89
+  },
+  "selected": {
+    "alpha": 0.01,
+    "l1_ratio": 0.15
+  },
+  "full": {
+    "mode": "full",
+    "run_id": "f7f8b4e9c79b4be08de44ec5f662f159",
+    "metrics": {
+      "mae": {
+        "value": 43.078123735122084,
+        "ci_low": 36.56225979674315,
+        "ci_high": 49.670292744203465
+      },
+      "rmse": {
+        "value": 53.967385894377664,
+        "ci_low": 46.81530576737395,
+        "ci_high": 60.935448465822006
+      },
+      "r2": {
+        "value": 0.45028400874170493,
+        "ci_low": 0.2735015438308762,
+        "ci_high": 0.5896234604406811
+      }
+    },
+    "resources": {
+      "elapsed_seconds": 0.06999279197771102,
+      "peak_rss_mb": 200.6875,
+      "peak_python_mb": 0.0636129379272461
+    },
+    "model_path": "reports/LAB2/ml_model_full.joblib",
+    "model_sha256": "995a4296d457bce6dfb09fa07f39b9465883e29b6a156d79197bd91aa28536f1"
+  },
+  "chunks": {
+    "mode": "chunks",
+    "run_id": "5be54b7f78a7446ca6998ec33e6fcf51",
+    "metrics": {
+      "mae": {
+        "value": 43.07812393244885,
+        "ci_low": 36.56225945203223,
+        "ci_high": 49.67029303891311
+      },
+      "rmse": {
+        "value": 53.967386588678806,
+        "ci_low": 46.815305748895035,
+        "ci_high": 60.93544957187968
+      },
+      "r2": {
+        "value": 0.45028399459729385,
+        "ci_low": 0.27350153397068455,
+        "ci_high": 0.5896234305728569
+      }
+    },
+    "resources": {
+      "elapsed_seconds": 0.6737020409782417,
+      "peak_rss_mb": 200.984375,
+      "peak_python_mb": 0.42127418518066406
+    },
+    "model_path": "reports/LAB2/ml_model_chunks.joblib",
+    "model_sha256": "421e1d4a2fdc8abb36afd2f32f7bf1a7e2313d057189e274084d1220a77d5847"
+  },
+  "metric_differences": {
+    "mae": 1.9732676292960605e-07,
+    "rmse": 6.943011428006685e-07,
+    "r2": 1.414441108682496e-08
+  },
+  "reproducibility": {
+    "seed": 42,
+    "max_prediction_difference": 0.0,
+    "passed": true
+  },
+  "negative_config_tests": [
+    "PASS chunk_size_zero: Input should be greater than 0",
+    "PASS negative_alpha: Value error, all alpha_grid values must be non-negative",
+    "PASS l1_ratio_out_of_range: Value error, all l1_ratio_grid values must be between 0 and 1"
+  ],
+  "leakage_test": "PASS leakage trap detected: data leakage detected: scaler statistics are not train-only; max_mean_difference=0.004523560714",
+  "memory_scaling_bounded": true,
+  "final_model_sha256": "995a4296d457bce6dfb09fa07f39b9465883e29b6a156d79197bd91aa28536f1"
+}
