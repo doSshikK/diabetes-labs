@@ -2,6 +2,10 @@ data_path: data/raw/diabetes.csv
 processed_dir: data/processed
 report_dir: reports/LAB2
 model_path: reports/LAB2/ml_model.joblib
+scaler: standard
+model: sgd_regressor
+loss: squared_error
+penalty: elasticnet
 seed: 42
 chunk_size: 64
 test_size: 0.20

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Literal
 
 import yaml
 from pydantic import BaseModel, Field, model_validator
@@ -13,6 +14,10 @@ class Lab2Config(BaseModel):
     processed_dir: Path
     report_dir: Path
     model_path: Path
+    scaler: Literal["standard"]
+    model: Literal["sgd_regressor"]
+    loss: Literal["squared_error"]
+    penalty: Literal["elasticnet"]
     seed: int = Field(ge=0)
     chunk_size: int = Field(gt=0, le=10000)
     test_size: float = Field(gt=0.0, lt=0.5)

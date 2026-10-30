@@ -135,8 +135,8 @@ def bootstrap_metrics(
 
 def new_incremental_model(config: Lab2Config, alpha: float, l1_ratio: float) -> SGDRegressor:
     return SGDRegressor(
-        loss="squared_error",
-        penalty="elasticnet",
+        loss=config.loss,
+        penalty=config.penalty,
         alpha=alpha,
         l1_ratio=l1_ratio,
         max_iter=1,
@@ -341,22 +341,31 @@ def write_leakage_log(
 
 
 def memory_scaling_probe(
-    row_count: int,
-    column_count: int,
+    values: np.ndarray,
     chunk_size: int,
     report_path: Path,
 ) -> pd.DataFrame:
     records = []
-    bytes_per_row = column_count * 8
     for multiplier in (1, 10, 100):
-        total_rows = row_count * multiplier
-        max_rows = min(chunk_size, total_rows)
+        total_rows = len(values) * multiplier
+        max_rows = 0
+        checksum = 0.0
+        tracemalloc.start()
+        for start in range(0, total_rows, chunk_size):
+            stop = min(start + chunk_size, total_rows)
+            indices = np.arange(start, stop) % len(values)
+            chunk = values[indices].copy()
+            max_rows = max(max_rows, len(chunk))
+            checksum += float(chunk.mean())
+        _, peak_bytes = tracemalloc.get_traced_memory()
+        tracemalloc.stop()
         records.append(
             {
                 "volume_multiplier": multiplier,
                 "total_rows": total_rows,
                 "max_rows_in_memory": max_rows,
-                "estimated_chunk_mb": max_rows * bytes_per_row / (1024**2),
+                "measured_peak_python_mb": peak_bytes / (1024**2),
+                "checksum": checksum,
                 "bounded": max_rows <= chunk_size,
             }
         )
@@ -386,8 +395,10 @@ def log_mode_run(
                 "epochs": config.epochs,
                 "alpha": alpha,
                 "l1_ratio": l1_ratio,
-                "solver": "SGDRegressor",
-                "penalty": "elasticnet",
+                "solver": config.model,
+                "scaler": config.scaler,
+                "loss": config.loss,
+                "penalty": config.penalty,
             }
         )
         mlflow.log_metrics({name: values["value"] for name, values in metrics.items()})
@@ -420,10 +431,13 @@ def write_report(
     data_hash: str,
     metric_differences: dict[str, float],
     reproducibility_max_difference: float,
+    memory_probe: pd.DataFrame,
 ) -> None:
     best_reference = comparison[comparison["model"] == "elastic_net_reference"].sort_values("rmse").iloc[0]
     linear = comparison[comparison["model"] == "linear_regression"].iloc[0]
     naive = comparison[comparison["model"] == "naive_mean"].iloc[0]
+    memory_1x = memory_probe.iloc[0]
+    memory_100x = memory_probe.iloc[-1]
 
     def metric_rows(result: ModeResult) -> str:
         return "\n".join(
@@ -510,7 +524,11 @@ RMSE {metric_differences['rmse']:.12f}, R2 {metric_differences['r2']:.12f}.
 
 Проверка утечки в `leakage_test.log` намеренно обучает второй scaler на всех данных;
 защитная проверка его отклоняет. `memory_scaling_check.csv` показывает, что при росте
-логического объёма в 100 раз в памяти остаётся не более {config.chunk_size} строк.
+логического объёма в 100 раз в памяти остаётся не более {config.chunk_size} строк:
+измеренный пик Python-аллокаций изменился с
+{memory_1x['measured_peak_python_mb']:.6f} до
+{memory_100x['measured_peak_python_mb']:.6f} МБ. Близкий абсолютный RSS двух основных
+прогонов объясняется общей памятью интерпретатора и MLflow на малом наборе из 442 строк.
 `config_negative_test.log` содержит три остановки на невалидных настройках.
 
 ## Выводы
@@ -521,8 +539,9 @@ RMSE {metric_differences['rmse']:.12f}, R2 {metric_differences['r2']:.12f}.
    RMSE {best_reference['rmse']:.3f} (`model_validation_comparison.csv`).
 3. Полный и чанковый режимы дали согласованные test-метрики с расхождением RMSE
    {metric_differences['rmse']:.12f} (`ml_metrics.csv`).
-4. Чанковый режим ограничивает рабочую порцию {config.chunk_size} строками при
-   увеличении логического объёма в 100 раз (`memory_scaling_check.csv`).
+4. Чанковый режим ограничивает рабочую порцию {config.chunk_size} строками, а измеренный
+   Python-пик при увеличении логического объёма в 100 раз не превышает
+   {memory_100x['measured_peak_python_mb']:.6f} МБ (`memory_scaling_check.csv`).
 5. Итоговая модель воспроизводимо загружается из `ml_model.joblib`; её SHA-256
    равен `{final_hash}` (`model_manifest.json`).
 """
@@ -614,8 +633,7 @@ def run_lab2(config_path: str | Path = "configs/lab2.yaml") -> dict:
     negative_lines = write_negative_config_log(config)
     leakage_line = write_leakage_log(all_data, train, features, config)
     memory_probe = memory_scaling_probe(
-        len(all_data),
-        len(features) + 1,
+        all_data[[*features, TARGET]].to_numpy(dtype=float),
         config.chunk_size,
         config.report_dir / "memory_scaling_check.csv",
     )
@@ -639,6 +657,7 @@ def run_lab2(config_path: str | Path = "configs/lab2.yaml") -> dict:
         data_hash,
         metric_differences,
         reproducibility_max_difference,
+        memory_probe,
     )
     summary = {
         "config": config.model_dump(mode="json"),
