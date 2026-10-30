@@ -1,0 +1,9 @@
+pandas>=2.2,<4
+numpy>=2.0,<3
+scikit-learn>=1.6,<2
+pydantic>=2.10,<3
+PyYAML>=6.0,<7
+joblib>=1.4,<2
+mlflow-skinny>=2.18,<4
+psutil>=6.1,<8
+pytest>=8.3,<10

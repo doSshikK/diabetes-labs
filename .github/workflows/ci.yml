@@ -26,7 +26,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install pre-commit pandas
+          python -m pip install pre-commit
+          python -m pip install -r requirements.txt
 
       - name: Run pre-commit
         run: pre-commit run --all-files
@@ -39,3 +40,24 @@ jobs:
           cp reports/LAB1/eda_stats.csv /tmp/eda_stats_expected.csv
           python src/features/eda_stats.py
           cmp reports/LAB1/eda_stats.csv /tmp/eda_stats_expected.csv
+
+      - name: Run tests
+        env:
+          PYTHONPATH: src
+        run: pytest -q
+
+      - name: Verify LAB2 model artifact
+        env:
+          PYTHONPATH: src
+        run: |
+          python - <<'PY'
+          import joblib
+          import pandas as pd
+
+          bundle = joblib.load("reports/LAB2/ml_model.joblib")
+          frame = pd.read_csv("data/raw/diabetes.csv").head(3)
+          values = frame[bundle["features"]].to_numpy(dtype=float)
+          prediction = bundle["model"].predict(bundle["scaler"].transform(values))
+          assert prediction.shape == (3,)
+          print(prediction)
+          PY
