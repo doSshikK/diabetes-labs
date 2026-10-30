@@ -33,3 +33,8 @@ dist/
 # Temporary files
 *.tmp
 *.bak
+
+# Laboratory runtime artifacts
+mlruns/
+.coverage
+htmlcov/

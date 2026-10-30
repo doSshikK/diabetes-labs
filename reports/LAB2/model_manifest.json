@@ -1,0 +1,19 @@
+{
+  "path": "reports/LAB2/ml_model.joblib",
+  "sha256": "995a4296d457bce6dfb09fa07f39b9465883e29b6a156d79197bd91aa28536f1",
+  "features": [
+    "age",
+    "sex",
+    "bmi",
+    "bp",
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "s5",
+    "s6"
+  ],
+  "seed": 42,
+  "alpha": 0.01,
+  "l1_ratio": 0.15
+}
