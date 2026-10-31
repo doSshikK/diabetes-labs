@@ -516,6 +516,12 @@ MLflow run `{chunks.run_id}`. `StandardScaler.partial_fit` и
 
 ## Сравнение режимов и проверки
 
+| Показатель | Полный | Чанковый |
+|---|---:|---:|
+| Время обучения, с | {full.resources.elapsed_seconds:.3f} | {chunks.resources.elapsed_seconds:.3f} |
+| Пик RSS, МБ | {full.resources.peak_rss_mb:.3f} | {chunks.resources.peak_rss_mb:.3f} |
+| Пик Python-аллокаций, МБ | {full.resources.peak_python_mb:.3f} | {chunks.resources.peak_python_mb:.3f} |
+
 Абсолютные различия точечных метрик: MAE {metric_differences['mae']:.12f},
 RMSE {metric_differences['rmse']:.12f}, R2 {metric_differences['r2']:.12f}.
 Они возникают только из-за порядка накопления чисел с плавающей точкой и существенно
@@ -529,6 +535,9 @@ RMSE {metric_differences['rmse']:.12f}, R2 {metric_differences['r2']:.12f}.
 {memory_1x['measured_peak_python_mb']:.6f} до
 {memory_100x['measured_peak_python_mb']:.6f} МБ. Близкий абсолютный RSS двух основных
 прогонов объясняется общей памятью интерпретатора и MLflow на малом наборе из 442 строк.
+Поэтому чанковый режим на этом наборе не даёт выигрыша по RSS. Потоковая проверка
+подтверждает ограничение размера обрабатываемого чанка, но не заменяет полную
+проверку RSS на большом файле.
 `config_negative_test.log` содержит три остановки на невалидных настройках.
 
 ## Выводы
