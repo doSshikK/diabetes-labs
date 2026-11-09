@@ -1,0 +1,22 @@
+lab6_config_path: configs/lab6.yaml
+report_dir: reports/LAB7
+real_data_path: data/raw/diabetes.csv
+max_batch_size: 10000
+max_workers: 4
+benchmark_rows: 4000
+benchmark_workers:
+  - 1
+  - 4
+benchmark_warmups: 1
+benchmark_repeats: 3
+window_size: 442
+clean_windows: 3
+drift_windows: 3
+mean_shift_std: 2.0
+psi_bins: 10
+psi_threshold: 0.30
+ks_threshold: 0.20
+csi_threshold: 0.30
+feature_alert_fraction: 0.50
+max_detection_windows: 2
+seed: 42

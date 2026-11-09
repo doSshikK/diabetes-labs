@@ -1,0 +1,48 @@
+{
+  "active_version": "v1-full",
+  "versions": [
+    {
+      "version": "v1-full",
+      "path": "reports/LAB2/ml_model_full.joblib",
+      "sha256": "995a4296d457bce6dfb09fa07f39b9465883e29b6a156d79197bd91aa28536f1",
+      "metrics": {
+        "rmse": 53.967386,
+        "mae": 43.078124
+      },
+      "status": "working"
+    },
+    {
+      "version": "v2-chunks",
+      "path": "reports/LAB2/ml_model_chunks.joblib",
+      "sha256": "421e1d4a2fdc8abb36afd2f32f7bf1a7e2313d057189e274084d1220a77d5847",
+      "metrics": {
+        "rmse": 53.967387,
+        "mae": 43.078124
+      },
+      "status": "canary"
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-11-09T15:35:13.088101+00:00",
+      "action": "initialize",
+      "previous": null,
+      "current": "v1-full",
+      "reason": "configured initial version"
+    },
+    {
+      "timestamp": "2026-11-09T15:35:13.093852+00:00",
+      "action": "promote",
+      "previous": "v1-full",
+      "current": "v2-chunks",
+      "reason": "manual promotion"
+    },
+    {
+      "timestamp": "2026-11-09T15:35:13.095049+00:00",
+      "action": "rollback",
+      "previous": "v2-chunks",
+      "current": "v1-full",
+      "reason": "manual rollback"
+    }
+  ]
+}

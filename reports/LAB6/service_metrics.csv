@@ -1,0 +1,4 @@
+sample,active_version,requests,successes,failures,success_rate,uptime_seconds
+0,v1-full,1,1,0,1.0,0.7681853339308873
+1,v1-full,101,101,0,1.0,1.2198591249762103
+2,v1-full,1101,1101,0,1.0,1.8779447919223458

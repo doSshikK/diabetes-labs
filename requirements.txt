@@ -1,4 +1,4 @@
-pandas>=2.2,<4
+pandas>=2.2,<3
 numpy>=2.0,<3
 scikit-learn==1.9.1
 pydantic>=2.10,<3
@@ -11,3 +11,7 @@ torch>=2.6,<3
 scipy>=1.14,<2
 matplotlib>=3.9,<4
 pytest-cov>=6,<8
+fastapi>=0.115,<1
+uvicorn>=0.34,<1
+httpx>=0.28,<1
+evidently>=0.7,<1

@@ -38,3 +38,5 @@ dist/
 mlruns/
 .coverage
 htmlcov/
+reports/LAB7/evidently_report.html
+reports/LAB7/evidently_report.json
