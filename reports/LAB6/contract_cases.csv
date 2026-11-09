@@ -1,0 +1,5 @@
+case,expected_code,actual_code,passed,detail
+valid,200,200,True,ok
+missing_field,422,422,True,"[{'type': 'missing', 'loc': ['body', 'bmi'], 'msg': 'Field required', 'input': {'age': 0.038075906433423, 'sex': 0.0506801187398186, 'bp': 0.0218723855140367, 's1': -0.0442234984244459, 's2': -0.0348207628376989, 's3': -0.0434008456520249, 's4': -0.0025922619981832, 's5': 0.0199074861704627, 's6': -0.0176461251598037}}]"
+wrong_type,422,422,True,"[{'type': 'float_parsing', 'loc': ['body', 'bmi'], 'msg': 'Input should be a valid number, unable to parse string as a number', 'input': 'invalid'}]"
+out_of_range,422,422,True,"[{'type': 'less_than_equal', 'loc': ['body', 'bmi'], 'msg': 'Input should be less than or equal to 1', 'input': 10.0, 'ctx': {'le': 1.0}}]"

@@ -1,0 +1,24 @@
+report_dir: reports/LAB6
+registry_path: reports/LAB6/registry.json
+raw_data_path: data/raw/diabetes.csv
+initial_version: v1-full
+feature_min: -1.0
+feature_max: 1.0
+load_requests_per_endpoint: 100
+drill_requests: 1000
+max_load_workers: 8
+versions:
+  - version: v1-full
+    path: reports/LAB2/ml_model_full.joblib
+    sha256: 995a4296d457bce6dfb09fa07f39b9465883e29b6a156d79197bd91aa28536f1  # pragma: allowlist secret
+    metrics:
+      rmse: 53.967386
+      mae: 43.078124
+    status: working
+  - version: v2-chunks
+    path: reports/LAB2/ml_model_chunks.joblib
+    sha256: 421e1d4a2fdc8abb36afd2f32f7bf1a7e2313d057189e274084d1220a77d5847  # pragma: allowlist secret
+    metrics:
+      rmse: 53.967387
+      mae: 43.078124
+    status: canary

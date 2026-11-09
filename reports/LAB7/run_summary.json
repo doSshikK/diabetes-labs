@@ -1,0 +1,38 @@
+{
+  "batch_endpoint_code": 200,
+  "batch_predictions": 20,
+  "cpu_count": 10,
+  "benchmark": [
+    {
+      "workers": 1,
+      "repeat": "mean",
+      "rows": 4000,
+      "latency_seconds": 0.006502805626951158,
+      "throughput_rows_per_second": 615119.1085001569,
+      "retried_chunks": 0,
+      "speedup_vs_one_worker": 1.0
+    },
+    {
+      "workers": 4,
+      "repeat": "mean",
+      "rows": 4000,
+      "latency_seconds": 0.012764471621873478,
+      "throughput_rows_per_second": 313369.8063259832,
+      "retried_chunks": 0,
+      "speedup_vs_one_worker": 0.5094457349732995
+    }
+  ],
+  "worker_failure_control": {
+    "injected_failures": 1,
+    "retried_chunks": 1,
+    "predictions_returned": 100,
+    "service_survived": true
+  },
+  "drift": {
+    "clean_false_alerts": 0,
+    "first_drift_alert_window": 1,
+    "detection_delay_windows": 0,
+    "detected_by_deadline": true,
+    "clean_passed": true
+  }
+}
