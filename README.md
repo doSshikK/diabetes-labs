@@ -3,7 +3,7 @@
 Репозиторий лабораторных работ по варианту 05 Diabetes и проблеме
 мультиколлинеарности.
 
-## Лабораторная работа 2
+## Установка
 
 Создайте окружение и установите зависимости:
 
@@ -13,18 +13,20 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-Запуск воспроизводимого ML-пайплайна:
+## Запуск работ
 
 ```bash
 PYTHONPATH=src python -m lab2.run --config configs/lab2.yaml
+PYTHONPATH=src python -m lab3.run --config configs/lab3.yaml
+PYTHONPATH=src python -m lab4.run --config configs/lab4.yaml
+PYTHONPATH=src python -m lab5.run --config configs/lab5.yaml
 ```
 
-Проверка негативных контролей и защиты от утечки:
+Проверка:
 
 ```bash
 PYTHONPATH=src pytest -q
 ```
 
-Основные результаты находятся в `reports/LAB2/`: отчёт, таблица метрик,
-модель, журнал невалидных конфигураций, проверка утечки и проверка
-ограниченной памяти чанкового режима.
+Результаты находятся в `reports/LAB2/`–`reports/LAB5/`. Синтетические данные
+ЛР5 сохраняются в `data/synthetic/`.

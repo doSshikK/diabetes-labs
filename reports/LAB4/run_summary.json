@@ -1,0 +1,43 @@
+{
+  "features": [
+    "age",
+    "sex",
+    "bmi",
+    "bp",
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "s5",
+    "s6"
+  ],
+  "distance_threshold": 39.17184532122484,
+  "min_model_confidence": 0.05,
+  "metrics": {
+    "rejection_precision": 1.0,
+    "rejection_recall": 1.0,
+    "false_rejection_rate": 0.0,
+    "roc_auc": 1.0
+  },
+  "full_run_id": "aefa4e7c8c4f46c4bb2961fa98320bf3",
+  "chunk_run_id": "f3ac1c3746174b53acdebd1b3a312f6e",
+  "statistics": {
+    "mean_max_difference": 4.336808689942018e-19,
+    "covariance_max_difference": 9.75781955236954e-19,
+    "tolerance": 1e-08,
+    "passed": true
+  },
+  "full_usage": {
+    "elapsed_seconds": 0.0009055419359356165,
+    "peak_rss_mb": 195.28125,
+    "peak_python_mb": 0.07252120971679688
+  },
+  "chunk_usage": {
+    "elapsed_seconds": 0.006523750023916364,
+    "peak_rss_mb": 196.25,
+    "peak_python_mb": 0.3355722427368164
+  },
+  "validator_sha256": "e7c56580bcf66b582e635a9bcb56003b5930c9a590f906bf6139aa81e55a3150",
+  "all_ood_rejected": true,
+  "thresholds_passed": true
+}

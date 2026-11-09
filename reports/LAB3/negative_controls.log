@@ -1,0 +1,3 @@
+PASS batch_size_zero: value must be greater than 0
+PASS negative_weight_decay: values must be non-negative
+PASS seed_control: max prediction difference=12.733230591

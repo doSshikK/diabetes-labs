@@ -1,0 +1,74 @@
+{
+  "selected_weight_decay": 0.01,
+  "parameter_count": 897,
+  "model_sha256": "e1c064319e5bf3e69712b675dda5fcb3f4a8ff9b070c34e4990e672328ef790c",
+  "full": {
+    "run_id": "c567e61913f04acbbb5d4563ca866d51",
+    "metrics": {
+      "mae": {
+        "value": 40.120603968588156,
+        "ci_low": 34.32616400236494,
+        "ci_high": 46.991307049654836
+      },
+      "rmse": {
+        "value": 50.81148285420768,
+        "ci_low": 44.58146304726818,
+        "ci_high": 57.77260931504845
+      },
+      "r2": {
+        "value": 0.5126967077592093,
+        "ci_low": 0.35375933672312865,
+        "ci_high": 0.6285895344658895
+      }
+    },
+    "best_epoch": 71,
+    "elapsed_seconds": 0.5199960409663618,
+    "peak_rss_mb": 468.5625,
+    "peak_python_mb": 0.06593513488769531
+  },
+  "chunks": {
+    "run_id": "ebf4cdb3d1ba4413a8e40d07ea187ca3",
+    "metrics": {
+      "mae": {
+        "value": 40.120603968588156,
+        "ci_low": 34.32616400236494,
+        "ci_high": 46.991307049654836
+      },
+      "rmse": {
+        "value": 50.81148285420768,
+        "ci_low": 44.58146304726818,
+        "ci_high": 57.77260931504845
+      },
+      "r2": {
+        "value": 0.5126967077592093,
+        "ci_low": 0.35375933672312865,
+        "ci_high": 0.6285895344658895
+      }
+    },
+    "best_epoch": 71,
+    "elapsed_seconds": 1.241678791004233,
+    "peak_rss_mb": 474.03125,
+    "peak_python_mb": 0.5355644226074219
+  },
+  "reproducibility_max_difference": 0.0,
+  "different_seed_max_difference": 12.733230590820312,
+  "device_parity": {
+    "accelerator": "not_checked",
+    "max_difference": null,
+    "tolerance": 1e-05,
+    "passed": null,
+    "reason": "accelerator check disabled in the current environment"
+  },
+  "stream_probes": {
+    "1x": {
+      "logical_rows": 264.0,
+      "max_chunk_rows": 64.0,
+      "peak_python_mb": 0.2967214584350586
+    },
+    "100x": {
+      "logical_rows": 26400.0,
+      "max_chunk_rows": 64.0,
+      "peak_python_mb": 0.30499744415283203
+    }
+  }
+}

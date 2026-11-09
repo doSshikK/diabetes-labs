@@ -1,0 +1,37 @@
+{
+  "real_data_path": "data/raw/diabetes.csv",
+  "report_dir": "reports/LAB5",
+  "output_dir": "data/synthetic",
+  "n_samples": 2000,
+  "seed": 42,
+  "similar_jitter_scale": 0.03,
+  "mean_shift_std": 0.0,
+  "covariance_scale": 1.0,
+  "target_noise_std": 0.0,
+  "label_flip_fraction": 0.0,
+  "psi_bins": 10,
+  "similar_threshold": 0.1,
+  "random_psi_threshold": 0.2,
+  "similar_required_fraction": 0.8,
+  "random_required_fraction": 0.5,
+  "requests": {
+    "similar": {
+      "mode": "similar",
+      "n_samples": 2000,
+      "seed": 42,
+      "mean_shift_std": 0.0,
+      "covariance_scale": 1.0,
+      "target_noise_std": 0.0,
+      "label_flip_fraction": 0.0
+    },
+    "random": {
+      "mode": "random",
+      "n_samples": 2000,
+      "seed": 42,
+      "mean_shift_std": 0.0,
+      "covariance_scale": 1.0,
+      "target_noise_std": 0.0,
+      "label_flip_fraction": 0.0
+    }
+  }
+}

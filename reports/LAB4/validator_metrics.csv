@@ -1,0 +1,3 @@
+mode,run_id,rejection_precision,rejection_recall,false_rejection_rate,roc_auc,mean_max_difference,covariance_max_difference
+full,aefa4e7c8c4f46c4bb2961fa98320bf3,1.0,1.0,0.0,1.0,4.336808689942018e-19,9.75781955236954e-19
+chunks,f3ac1c3746174b53acdebd1b3a312f6e,1.0,1.0,0.0,1.0,4.336808689942018e-19,9.75781955236954e-19

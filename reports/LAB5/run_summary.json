@@ -1,0 +1,35 @@
+{
+  "hashes": {
+    "similar": "59a083c059920d85dc1c77b6dcfa3bb18231d33b95824956a72f42a5865bf020",
+    "random": "54e078f5c3cf73047956335bcaaf7720adf2ce1169cffdb90d567b5fbd4a8f1f"
+  },
+  "repeat_hash": "59a083c059920d85dc1c77b6dcfa3bb18231d33b95824956a72f42a5865bf020",
+  "byte_reproducible": true,
+  "similar_pass_fraction": 0.9,
+  "similar_required_fraction": 0.8,
+  "random_pass_fraction": 1.0,
+  "random_required_fraction": 0.5,
+  "thresholds_passed": true,
+  "drift_controls": {
+    "mean_shift": {
+      "feature_mean_max_difference": 0.09513029883089894,
+      "target_std_difference": 0.0,
+      "changed": true
+    },
+    "covariance": {
+      "feature_mean_max_difference": 0.0010343136594930188,
+      "target_std_difference": 0.0,
+      "changed": true
+    },
+    "target_noise": {
+      "feature_mean_max_difference": 0.0,
+      "target_std_difference": 8.931155307444058,
+      "changed": true
+    },
+    "label_flip": {
+      "feature_mean_max_difference": 0.0,
+      "target_std_difference": 0.062212989509262684,
+      "changed": true
+    }
+  }
+}
