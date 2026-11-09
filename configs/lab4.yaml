@@ -1,0 +1,14 @@
+train_path: data/processed/lab2_train.csv
+test_path: data/processed/lab2_test.csv
+model_path: reports/LAB2/ml_model.joblib
+report_dir: reports/LAB4
+validator_path: reports/LAB4/validator_params.npz
+chunk_size: 64
+distance_quantile: 0.99
+min_model_confidence: 0.05
+covariance_regularization: 0.000001
+mean_shift_std: 6.0
+false_rejection_limit: 0.10
+ood_recall_threshold: 0.95
+statistics_tolerance: 0.00000001
+seed: 42

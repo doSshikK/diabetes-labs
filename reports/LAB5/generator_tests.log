@@ -1,0 +1,8 @@
+Name                    Stmts   Miss  Cover   Missing
+-----------------------------------------------------
+src/lab5/__init__.py        3      0   100%
+src/lab5/config.py         37      1    97%   30
+src/lab5/generator.py     115      1    99%   82
+src/lab5/run.py            11     11     0%   1-17
+-----------------------------------------------------
+TOTAL                     166     13    92%

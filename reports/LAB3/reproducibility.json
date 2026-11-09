@@ -1,0 +1,13 @@
+{
+  "same_seed_max_difference": 0.0,
+  "tolerance": 0.005,
+  "passed": true,
+  "different_seed_max_difference": 12.733230590820312,
+  "device_parity": {
+    "accelerator": "not_checked",
+    "max_difference": null,
+    "tolerance": 1e-05,
+    "passed": null,
+    "reason": "accelerator check disabled in the current environment"
+  }
+}

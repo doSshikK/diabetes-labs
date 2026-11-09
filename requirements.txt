@@ -7,3 +7,7 @@ joblib>=1.4,<2
 mlflow-skinny>=2.18,<4
 psutil>=6.1,<8
 pytest>=8.3,<10
+torch>=2.6,<3
+scipy>=1.14,<2
+matplotlib>=3.9,<4
+pytest-cov>=6,<8
