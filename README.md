@@ -20,6 +20,8 @@ PYTHONPATH=src python -m lab2.run --config configs/lab2.yaml
 PYTHONPATH=src python -m lab3.run --config configs/lab3.yaml
 PYTHONPATH=src python -m lab4.run --config configs/lab4.yaml
 PYTHONPATH=src python -m lab5.run --config configs/lab5.yaml
+PYTHONPATH=src python -m lab6.run --config configs/lab6.yaml
+PYTHONPATH=src python -m lab7.run --config configs/lab7.yaml
 ```
 
 Проверка:
@@ -28,5 +30,5 @@ PYTHONPATH=src python -m lab5.run --config configs/lab5.yaml
 PYTHONPATH=src pytest -q
 ```
 
-Результаты находятся в `reports/LAB2/`–`reports/LAB5/`. Синтетические данные
+Результаты находятся в `reports/LAB2/`–`reports/LAB7/`. Синтетические данные
 ЛР5 сохраняются в `data/synthetic/`.

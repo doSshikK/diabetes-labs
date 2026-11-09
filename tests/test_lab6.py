@@ -14,7 +14,7 @@ from lab6.service import ModelService, create_app
 @pytest.fixture
 def client_and_service() -> tuple[TestClient, ModelService]:
     config = load_config()
-    app, service = create_app(config)
+    app, service = create_app(config, persist_registry=False)
     return TestClient(app), service
 
 
@@ -49,7 +49,7 @@ def test_hash_mismatch_is_rejected() -> None:
     payload["versions"][0]["sha256"] = "0" * 64
     config = Lab6Config.model_validate(payload)
     with pytest.raises(ValueError, match="hash mismatch"):
-        ModelService(config)
+        ModelService(config, persist_registry=False)
 
 
 def test_bad_config_is_rejected() -> None:
