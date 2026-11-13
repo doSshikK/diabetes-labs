@@ -1,0 +1,42 @@
+{
+  "C1": true,
+  "C2": true,
+  "C3": true,
+  "C4": true,
+  "C5": true,
+  "incidents": [
+    {
+      "scenario": "C1_service_process_kill",
+      "health_detection_seconds": 0.0067851669155061245,
+      "recovery_seconds": 0.002741290954872966,
+      "smoke_status": 200
+    },
+    {
+      "scenario": "C2_worker_stop",
+      "health_status": 200,
+      "retried_chunks": 1,
+      "returned": 100,
+      "batch_error_rate": 0.0
+    },
+    {
+      "scenario": "C3_corrupted_model",
+      "hash_mismatch_detected": true,
+      "working_version_continues": true
+    },
+    {
+      "scenario": "C4_stream_interruption",
+      "degraded_mode_recorded": true,
+      "interrupted_at": 100,
+      "resumed_processed": 200,
+      "counter_consistent": true,
+      "recovery_windows": 1
+    },
+    {
+      "scenario": "C5_invalid_configuration",
+      "rejected": true,
+      "error": "Input should be greater than or equal to 10000",
+      "valid_repeat_passed": true
+    }
+  ],
+  "passed": true
+}

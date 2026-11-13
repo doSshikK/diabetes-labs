@@ -1,0 +1,7 @@
+{
+  "command": "generate",
+  "source": "real",
+  "rows": 2000,
+  "path": "reports/LAB8/generated_from_real.csv",
+  "sha256": "6cfda94c6653b8bbc37dce75d85a00a1d7f0dad6b2f5e9951f5ba679d7841f1b"
+}

@@ -1,0 +1,14 @@
+{
+  "command": "train_ml",
+  "source": "real",
+  "rows_train": 353,
+  "rows_test": 89,
+  "metrics": {
+    "mae": 42.87333224331688,
+    "rmse": 53.53934306001305,
+    "r2": 0.45896958196783777
+  },
+  "elapsed_seconds": 0.0012682500528171659,
+  "model_path": "reports/LAB8/models/ml_real.joblib",
+  "model_sha256": "0244c05e764a673ddfa2ba5ca21c83bdff682198f840a0f7e2a56b460e7998f2"
+}

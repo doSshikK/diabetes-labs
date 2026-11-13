@@ -1,0 +1,10 @@
+{
+  "command": "train_validator",
+  "source": "synthetic",
+  "false_rejection_rate": 0.015,
+  "drift_rejection_rate": 1.0,
+  "distance_threshold": 44.66112446894537,
+  "elapsed_seconds": 0.0014281669864431024,
+  "model_path": "reports/LAB8/models/validator_synthetic.npz",
+  "model_sha256": "4a2ee1c2e420067cbde9bd5f87ff18f7e2bae3d114b783ed4814a8e31622f1ab"
+}

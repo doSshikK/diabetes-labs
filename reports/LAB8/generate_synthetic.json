@@ -1,0 +1,7 @@
+{
+  "command": "generate",
+  "source": "synthetic",
+  "rows": 2000,
+  "path": "reports/LAB8/generated_from_synthetic.csv",
+  "sha256": "1ec9fcd8e0e6441573b37a5f3f61b2369c5ef7e48845dd6d9b6e73ef09ff2c2a"
+}
