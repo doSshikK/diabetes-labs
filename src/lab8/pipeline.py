@@ -398,25 +398,27 @@ class AlertJournal:
         return True
 
 
-def run_alert_drill(config: Lab8Config) -> dict[str, Any]:
+def run_alert_drill(
+    config: Lab8Config, source: DataSource = "real"
+) -> dict[str, Any]:
     ensure_output_dirs(config)
-    real = load_source(config, "real")
-    features = feature_columns(real)
-    drifted = real.copy()
-    scale = real[features].std(ddof=0).replace(0.0, 1.0)
+    reference = load_source(config, source)
+    features = feature_columns(reference)
+    drifted = reference.copy()
+    scale = reference[features].std(ddof=0).replace(0.0, 1.0)
     drifted[features] = drifted[features] + config.drift_mean_shift_std * scale
     psi_values = [
         psi(
-            real[feature].to_numpy(dtype=float),
+            reference[feature].to_numpy(dtype=float),
             drifted[feature].to_numpy(dtype=float),
             config.psi_bins,
         )
         for feature in features
     ]
     max_psi = float(max(psi_values))
-    validator_path = config.model_dir / "validator_real.npz"
+    validator_path = config.model_dir / f"validator_{source}.npz"
     if not validator_path.exists():
-        train_validator(config, "real")
+        train_validator(config, source)
     with np.load(validator_path) as loaded:
         validator = {name: loaded[name] for name in loaded.files}
     rejection_rate = float(np.mean(_validator_verdicts(validator, drifted)))
@@ -478,6 +480,7 @@ def run_alert_drill(config: Lab8Config) -> dict[str, Any]:
         encoding="utf-8",
     )
     summary = {
+        "source": source,
         "clean_alerts": clean_alerts,
         "alerts_written": len(journal.entries),
         "duplicates_suppressed": journal.suppressed,

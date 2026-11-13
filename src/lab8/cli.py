@@ -61,8 +61,7 @@ def monitor_command() -> None:
     from .config import load_config
     from .pipeline import run_alert_drill
 
-    _ = args.source
-    result = run_alert_drill(load_config(args.config))
+    result = run_alert_drill(load_config(args.config), args.source)
     print(json.dumps(result, indent=2, ensure_ascii=False))
 
 
