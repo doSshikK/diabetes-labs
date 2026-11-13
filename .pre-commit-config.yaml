@@ -20,3 +20,4 @@ repos:
     hooks:
       - id: detect-secrets
         args: ["--baseline", ".secrets.baseline"]
+        exclude: ^reports/LAB8/(artifacts_manifest|generate_(real|synthetic)|reproducibility|run_summary|train_(ml|dl|validator)_(real|synthetic))\.json$

@@ -1,6 +1,6 @@
 {
   "variant": "05 Diabetes",
-  "code_commit": "826bfb20afaf8538cd0744cf4c4862c05d3a728d",
+  "code_commit": "c38cbe0f057feae2466c2ceed6eb9f797bf01804",
   "manifest_path": "reports/LAB8/artifacts_manifest.json",
   "manifest_self_hash_excluded": true,
   "file_count": 177,
@@ -27,8 +27,8 @@
     },
     {
       "path": ".pre-commit-config.yaml",
-      "size_bytes": 561,
-      "sha256": "22e68a3172302fdb48211a32fa6140c96015f2c988d27cc3ec3066a7207cfb4a"
+      "size_bytes": 715,
+      "sha256": "7bb3e319a0a99118e7537acf37a5a211c0ef0d0b5b7682408142a06e504a912d"
     },
     {
       "path": ".secrets.baseline",
@@ -537,8 +537,8 @@
     },
     {
       "path": "reports/LAB8/lab8_report.md",
-      "size_bytes": 8016,
-      "sha256": "2b64ca5ea02bd49bebd65031dafaeec652518cd8ae0185d5fe398f5367bfb956"
+      "size_bytes": 8015,
+      "sha256": "12bef0146513bae6fb897ac21d5b50edf83c03855b9c8fd3cc050e8dd49d4ffa"
     },
     {
       "path": "reports/LAB8/load_stages.csv",
@@ -597,8 +597,8 @@
     },
     {
       "path": "reports/LAB8/review_comment.md",
-      "size_bytes": 863,
-      "sha256": "fe992b8c2888e24644715a40a5d1c6616e838ebd482e58aa98cdfcdec3bab1e1"
+      "size_bytes": 862,
+      "sha256": "b8f25b788f93351fcf5bdc48d5925995432098839e1d6a79c0c9a924a33bc05b"
     },
     {
       "path": "reports/LAB8/run_summary.json",
@@ -612,8 +612,8 @@
     },
     {
       "path": "reports/LAB8/technical_review.md",
-      "size_bytes": 2411,
-      "sha256": "bbdda546aa4fa6c3a39a5b5cb849a9241f41f9293de3e20c3cfe677b91d160e0"
+      "size_bytes": 2410,
+      "sha256": "a45c05f01b218c51865c8aec7937a99c65501798fc8e5528199f8b20fe8c3271"
     },
     {
       "path": "reports/LAB8/test_results.log",
