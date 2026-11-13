@@ -21,6 +21,7 @@ import pandas as pd
 import psutil
 import torch
 from fastapi import FastAPI
+from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from sklearn.covariance import EmpiricalCovariance
 from sklearn.linear_model import ElasticNet
@@ -419,7 +420,10 @@ def run_alert_drill(config: Lab8Config) -> dict[str, Any]:
     with np.load(validator_path) as loaded:
         validator = {name: loaded[name] for name in loaded.files}
     rejection_rate = float(np.mean(_validator_verdicts(validator, drifted)))
-    service_error_rate = 0.05
+    injected_service_codes = [200] * 95 + [500] * 5
+    service_error_rate = float(
+        np.mean(np.asarray(injected_service_codes, dtype=int) >= 500)
+    )
     clean_values = {
         "feature_psi": 0.0,
         "validator_rejection_rate": 0.0,
@@ -723,6 +727,8 @@ def run_fault_drills(config: Lab8Config) -> dict[str, Any]:
         stderr=subprocess.DEVNULL,
     )
     recovery = time.perf_counter() - recovery_started
+    with TestClient(create_service_app(config, "real")) as client:
+        smoke_status = client.get("/health").status_code
     restarted.terminate()
     restarted.wait(timeout=5)
     incidents.append(
@@ -730,7 +736,7 @@ def run_fault_drills(config: Lab8Config) -> dict[str, Any]:
             "scenario": "C1_service_process_kill",
             "health_detection_seconds": health_detection,
             "recovery_seconds": recovery,
-            "smoke_status": 200,
+            "smoke_status": smoke_status,
         }
     )
 
@@ -740,10 +746,12 @@ def run_fault_drills(config: Lab8Config) -> dict[str, Any]:
 
     request_rows = rows_from_frame(real[feature_columns(real)].iloc[:100])
     failure = predictor.predict(request_rows, workers=4, fail_chunk_index=0)
+    with TestClient(batch_app) as client:
+        batch_health_status = client.get("/health").status_code
     incidents.append(
         {
             "scenario": "C2_worker_stop",
-            "health_status": 200,
+            "health_status": batch_health_status,
             "retried_chunks": failure.retried_chunks,
             "returned": len(failure.predictions),
             "batch_error_rate": 0.0,
@@ -813,8 +821,11 @@ def run_fault_drills(config: Lab8Config) -> dict[str, Any]:
     )
     summary = {
         "C1": health_detection <= config.maximum_health_detection_seconds
-        and recovery <= config.maximum_recovery_seconds,
-        "C2": failure.retried_chunks == 1 and len(failure.predictions) == 100,
+        and recovery <= config.maximum_recovery_seconds
+        and smoke_status == 200,
+        "C2": failure.retried_chunks == 1
+        and len(failure.predictions) == 100
+        and batch_health_status == 200,
         "C3": rejected and working_continues,
         "C4": resumed["processed"] == 200,
         "C5": bool(invalid_error) and valid_repeat.seed == config.seed,
