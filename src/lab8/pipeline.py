@@ -21,7 +21,6 @@ import pandas as pd
 import psutil
 import torch
 from fastapi import FastAPI
-from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from sklearn.covariance import EmpiricalCovariance
 from sklearn.linear_model import ElasticNet
@@ -713,6 +712,8 @@ def run_load_drill(
 
 
 def run_fault_drills(config: Lab8Config) -> dict[str, Any]:
+    from fastapi.testclient import TestClient
+
     ensure_output_dirs(config)
     incidents: list[dict[str, Any]] = []
     started = time.perf_counter()
