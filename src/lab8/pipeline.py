@@ -602,8 +602,13 @@ def run_load_drill(
     frame = load_source(config, "real")
     features = feature_columns(frame)
     values = frame[features].to_numpy(dtype=float)
+    synthetic_frame = load_source(config, "synthetic")
+    synthetic_values = synthetic_frame[features].to_numpy(dtype=float)
     ml_bundle = joblib.load(config.model_dir / "ml_real.joblib")
     dl_predict, _dl_features = load_dl_predictor(config.model_dir / "dl_real.pt")
+    synthetic_predict, _synthetic_features = load_dl_predictor(
+        config.model_dir / "dl_synthetic.pt"
+    )
     rows = 250 if quick else config.minimum_requests_per_stage
     warmup_rows = 100 if quick else max(5_000, rows // 2)
     warmup_duration = 0.0 if quick else float(config.warmup_duration_seconds)
@@ -619,8 +624,17 @@ def run_load_drill(
         prediction = dl_predict(values[index % len(values)][None, :])
         return bool(np.isfinite(prediction[0]))
 
+    def warmup_request(index: int) -> bool:
+        row = synthetic_values[index % len(synthetic_values)][None, :]
+        prediction = synthetic_predict(row)
+        return bool(np.isfinite(prediction[0]))
+
     warmup, resources = _run_requests(
-        "warmup", dl_request, warmup_rows, warmup_duration, sample_interval
+        "warmup_synthetic",
+        warmup_request,
+        warmup_rows,
+        warmup_duration,
+        sample_interval,
     )
     ml_clean, ml_resources = _run_requests(
         "ml_clean", ml_request, rows, stage_duration, sample_interval
