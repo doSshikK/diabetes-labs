@@ -672,17 +672,20 @@ def run_load_drill(
     drift["silent_foreign_accepts"] = int(np.sum(~drift_rejected))
 
     active = {"backend": "dl"}
+    rollback_timing: dict[str, float] = {}
 
     def rollback_request(index: int) -> bool:
         if index == rows // 2:
+            switch_started = time.perf_counter()
             active["backend"] = "ml"
+            rollback_timing["seconds"] = time.perf_counter() - switch_started
         return dl_request(index) if active["backend"] == "dl" else ml_request(index)
 
     rollback, rollback_resources = _run_requests(
         "rollback", rollback_request, rows, stage_duration, sample_interval
     )
     resources.extend(rollback_resources)
-    rollback["rollback_seconds"] = rollback["elapsed_seconds"] / 2.0
+    rollback["rollback_seconds"] = rollback_timing.get("seconds", 0.0)
     rollback["post_rollback_recovery_windows"] = 1
 
     resource_frame = pd.DataFrame(resources)

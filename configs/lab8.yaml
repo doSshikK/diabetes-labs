@@ -23,7 +23,7 @@ alert_deduplication_seconds: 600
 minimum_requests_per_stage: 10000
 warmup_duration_seconds: 300
 stage_duration_seconds: 600
-resource_sample_interval_seconds: 2.0
+resource_sample_interval_seconds: 1.8
 lab6_p95_seconds: 0.005
 latency_limit_multiplier: 1.5
 maximum_false_alerts: 1
