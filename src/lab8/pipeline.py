@@ -505,6 +505,7 @@ def _run_requests(
     rows: int,
     duration_seconds: float,
     sample_interval: float,
+    pacing_weights: list[float] | None = None,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     process = psutil.Process()
     latencies: list[float] = []
@@ -512,8 +513,25 @@ def _run_requests(
     successes = 0
     started = time.perf_counter()
     next_sample = started
-    for index in range(rows):
-        target = started + duration_seconds * index / max(rows - 1, 1)
+    if pacing_weights:
+        weights = np.asarray(pacing_weights, dtype=float)
+        raw_counts = rows * weights / weights.sum()
+        counts = np.floor(raw_counts).astype(int)
+        counts[np.argsort(raw_counts - counts)[::-1][: rows - counts.sum()]] += 1
+        segment_seconds = duration_seconds / len(weights)
+        target_offsets = [
+            segment * segment_seconds
+            + segment_seconds * (position + 1) / max(count, 1)
+            for segment, count in enumerate(counts)
+            for position in range(count)
+        ]
+    else:
+        counts = np.asarray([], dtype=int)
+        target_offsets = [
+            duration_seconds * index / max(rows - 1, 1) for index in range(rows)
+        ]
+    for index, target_offset in enumerate(target_offsets):
+        target = started + target_offset
         remaining = target - time.perf_counter()
         if remaining > 0:
             time.sleep(remaining)
@@ -543,6 +561,8 @@ def _run_requests(
         "rps": rows / max(elapsed, 1e-12),
         **_latency_summary(latencies),
     }
+    if pacing_weights:
+        metrics["requests_per_interval"] = counts.tolist()
     return metrics, resource_rows
 
 
@@ -614,7 +634,12 @@ def run_load_drill(
     )
     resources.extend(dl_resources)
     varying, varying_resources = _run_requests(
-        "dl_varying_rps", dl_request, rows, stage_duration, sample_interval
+        "dl_varying_rps",
+        dl_parallel_request,
+        rows,
+        stage_duration,
+        sample_interval,
+        pacing_weights=[0.5, 1.0, 1.5, 2.0, 2.5, 2.0, 1.5, 1.0, 0.75, 0.5],
     )
     resources.extend(varying_resources)
 
