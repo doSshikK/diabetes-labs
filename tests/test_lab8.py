@@ -12,6 +12,7 @@ from pydantic import ValidationError
 from lab8.config import Lab8Config, load_config
 from lab8.manifest import verify_manifest
 from lab8.pipeline import (
+    FEATURES,
     create_service_app,
     load_source,
     run_alert_drill,
@@ -46,7 +47,7 @@ def test_sources_have_expected_schema() -> None:
     for source in ("real", "synthetic"):
         frame = load_source(config, source)
         assert len(frame) >= 442
-        assert "target" in frame
+        assert list(frame.columns) == [*FEATURES, "target"]
         assert not frame.isna().any().any()
 
 

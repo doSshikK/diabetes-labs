@@ -42,6 +42,7 @@ from .config import Lab8Config, load_config
 
 DataSource = Literal["real", "synthetic"]
 TARGET = "target"
+FEATURES = ["age", "sex", "bmi", "bp", "s1", "s2", "s3", "s4", "s5", "s6"]
 
 
 def sha256_file(path: str | Path) -> str:
@@ -53,7 +54,7 @@ def sha256_file(path: str | Path) -> str:
 
 
 def feature_columns(frame: pd.DataFrame) -> list[str]:
-    return [column for column in frame.columns if column not in {"row_id", TARGET}]
+    return [column for column in FEATURES if column in frame.columns]
 
 
 def source_path(config: Lab8Config, source: DataSource) -> Path:
@@ -62,13 +63,13 @@ def source_path(config: Lab8Config, source: DataSource) -> Path:
 
 def load_source(config: Lab8Config, source: DataSource) -> pd.DataFrame:
     frame = pd.read_csv(source_path(config, source))
-    required = {TARGET, "age", "sex", "bmi", "bp", "s1", "s2", "s3", "s4", "s5", "s6"}
-    missing = required.difference(frame.columns)
+    required = [*FEATURES, TARGET]
+    missing = set(required).difference(frame.columns)
     if missing:
         raise ValueError(f"source {source!r} misses columns: {sorted(missing)}")
-    if frame[list(required)].isna().any().any():
+    if frame[required].isna().any().any():
         raise ValueError(f"source {source!r} contains missing values")
-    return frame[list(required)].copy()
+    return frame[required].copy()
 
 
 def split_source(
