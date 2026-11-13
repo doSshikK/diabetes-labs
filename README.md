@@ -10,7 +10,7 @@
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements.txt
+python -m pip install -e .
 ```
 
 ## Запуск работ
@@ -22,6 +22,19 @@ PYTHONPATH=src python -m lab4.run --config configs/lab4.yaml
 PYTHONPATH=src python -m lab5.run --config configs/lab5.yaml
 PYTHONPATH=src python -m lab6.run --config configs/lab6.yaml
 PYTHONPATH=src python -m lab7.run --config configs/lab7.yaml
+lab8-run --config configs/lab8.yaml
+```
+
+Команды ЛР8 принимают `--config` и `--source real|synthetic`:
+
+```bash
+train_ml --config configs/lab8.yaml --source real
+train_dl --config configs/lab8.yaml --source real
+train_validator --config configs/lab8.yaml --source real
+generate --config configs/lab8.yaml --source real
+serve --config configs/lab8.yaml --source real
+evaluate --config configs/lab8.yaml --source real
+monitor --config configs/lab8.yaml --source real
 ```
 
 Проверка:
@@ -30,5 +43,5 @@ PYTHONPATH=src python -m lab7.run --config configs/lab7.yaml
 PYTHONPATH=src pytest -q
 ```
 
-Результаты находятся в `reports/LAB2/`–`reports/LAB7/`. Синтетические данные
+Результаты находятся в `reports/LAB2/`–`reports/LAB8/`. Синтетические данные
 ЛР5 сохраняются в `data/synthetic/`.

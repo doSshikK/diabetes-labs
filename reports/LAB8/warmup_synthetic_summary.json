@@ -1,0 +1,13 @@
+{
+  "stage": "warmup_synthetic",
+  "requests": 5000,
+  "successes": 5000,
+  "lost_requests": 0,
+  "success_rate": 1.0,
+  "elapsed_seconds": 300.00111529091373,
+  "rps": 16.666604706290695,
+  "p50_seconds": 0.0005765409441664815,
+  "p95_seconds": 0.0007952267827931792,
+  "p99_seconds": 0.000994125505676494,
+  "source": "synthetic"
+}

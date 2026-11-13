@@ -1,0 +1,14 @@
+{
+  "command": "train_dl",
+  "source": "real",
+  "rows_train": 353,
+  "rows_test": 89,
+  "metrics": {
+    "mae": 51.60688200961338,
+    "rmse": 65.12063339768397,
+    "r2": 0.19958938599618614
+  },
+  "elapsed_seconds": 0.013955499976873398,
+  "model_path": "reports/LAB8/models/dl_real.pt",
+  "model_sha256": "c51534d8d38b6dee25bd3b39c15092a32912cb83bed3e08ff35c8bf8fff1cabb"
+}

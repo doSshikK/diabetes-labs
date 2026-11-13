@@ -1,0 +1,84 @@
+{
+  "seed": 42,
+  "exact_match": true,
+  "first": {
+    "sources": {
+      "real": {
+        "ml_metrics": {
+          "mae": 42.87333224331688,
+          "rmse": 53.53934306001305,
+          "r2": 0.45896958196783777
+        },
+        "dl_metrics": {
+          "mae": 51.60688200961338,
+          "rmse": 65.12063339768397,
+          "r2": 0.19958938599618614
+        },
+        "validator_false_rejection": 0.0,
+        "validator_drift_rejection": 1.0,
+        "generated_sha256": "6cfda94c6653b8bbc37dce75d85a00a1d7f0dad6b2f5e9951f5ba679d7841f1b"
+      },
+      "synthetic": {
+        "ml_metrics": {
+          "mae": 43.50790808907132,
+          "rmse": 53.04298283444105,
+          "r2": 0.47169225690468086
+        },
+        "dl_metrics": {
+          "mae": 49.557071685791016,
+          "rmse": 63.85390582464396,
+          "r2": 0.23439276218414307
+        },
+        "validator_false_rejection": 0.015,
+        "validator_drift_rejection": 1.0,
+        "generated_sha256": "1ec9fcd8e0e6441573b37a5f3f61b2369c5ef7e48845dd6d9b6e73ef09ff2c2a"
+      }
+    },
+    "alerts": {
+      "clean_alerts": 0,
+      "alerts_written": 3,
+      "duplicates_suppressed": 3,
+      "passed": true
+    }
+  },
+  "second": {
+    "sources": {
+      "real": {
+        "ml_metrics": {
+          "mae": 42.87333224331688,
+          "rmse": 53.53934306001305,
+          "r2": 0.45896958196783777
+        },
+        "dl_metrics": {
+          "mae": 51.60688200961338,
+          "rmse": 65.12063339768397,
+          "r2": 0.19958938599618614
+        },
+        "validator_false_rejection": 0.0,
+        "validator_drift_rejection": 1.0,
+        "generated_sha256": "6cfda94c6653b8bbc37dce75d85a00a1d7f0dad6b2f5e9951f5ba679d7841f1b"
+      },
+      "synthetic": {
+        "ml_metrics": {
+          "mae": 43.50790808907132,
+          "rmse": 53.04298283444105,
+          "r2": 0.47169225690468086
+        },
+        "dl_metrics": {
+          "mae": 49.557071685791016,
+          "rmse": 63.85390582464396,
+          "r2": 0.23439276218414307
+        },
+        "validator_false_rejection": 0.015,
+        "validator_drift_rejection": 1.0,
+        "generated_sha256": "1ec9fcd8e0e6441573b37a5f3f61b2369c5ef7e48845dd6d9b6e73ef09ff2c2a"
+      }
+    },
+    "alerts": {
+      "clean_alerts": 0,
+      "alerts_written": 3,
+      "duplicates_suppressed": 3,
+      "passed": true
+    }
+  }
+}

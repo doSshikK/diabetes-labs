@@ -1,0 +1,14 @@
+{
+  "command": "train_ml",
+  "source": "synthetic",
+  "rows_train": 1600,
+  "rows_test": 400,
+  "metrics": {
+    "mae": 43.50790808907132,
+    "rmse": 53.04298283444105,
+    "r2": 0.47169225690468086
+  },
+  "elapsed_seconds": 0.001252082991413772,
+  "model_path": "reports/LAB8/models/ml_synthetic.joblib",
+  "model_sha256": "7022d76a3920604a770008dc0ed47395934e191af092db100985f372e690dd2f"
+}

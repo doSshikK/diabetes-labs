@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "diabetes-labs"
+version = "1.0.0"
+description = "Laboratory pipelines for variant 05 Diabetes"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "evidently>=0.7,<1",
+  "fastapi>=0.115,<1",
+  "httpx>=0.28,<1",
+  "joblib>=1.4,<2",
+  "matplotlib>=3.9,<4",
+  "mlflow-skinny>=2.18,<4",
+  "numpy>=2.0,<3",
+  "pandas==2.3.3",
+  "psutil>=6.1,<8",
+  "pydantic>=2.10,<3",
+  "PyYAML>=6.0,<7",
+  "scikit-learn==1.9.1",
+  "scipy>=1.14,<2",
+  "torch>=2.6,<3",
+  "uvicorn>=0.34,<1",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.3,<10", "pytest-cov>=6,<8"]
+
+[project.scripts]
+train_ml = "lab8.cli:train_ml_command"
+train_dl = "lab8.cli:train_dl_command"
+train_validator = "lab8.cli:train_validator_command"
+generate = "lab8.cli:generate_command"
+serve = "lab8.cli:serve_command"
+evaluate = "lab8.cli:evaluate_command"
+monitor = "lab8.cli:monitor_command"
+lab8-run = "lab8.run:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

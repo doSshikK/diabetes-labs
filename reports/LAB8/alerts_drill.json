@@ -1,0 +1,10 @@
+{
+  "source": "real",
+  "clean_alerts": 0,
+  "alerts_written": 3,
+  "duplicates_suppressed": 3,
+  "max_feature_psi": 7.412789215598696,
+  "validator_rejection_rate": 1.0,
+  "service_error_rate": 0.05,
+  "passed": true
+}

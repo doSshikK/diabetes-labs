@@ -1,0 +1,3 @@
+{"timestamp": "2026-11-13T06:36:44+00:00", "metric": "feature_psi", "value": 7.412789215598696, "threshold": 0.3, "level": "warning", "action": "start drift investigation"}
+{"timestamp": "2026-11-13T06:36:44+00:00", "metric": "validator_rejection_rate", "value": 1.0, "threshold": 0.9, "level": "critical", "action": "reject foreign inputs and rollback"}
+{"timestamp": "2026-11-13T06:36:44+00:00", "metric": "service_error_rate", "value": 0.05, "threshold": 0.01, "level": "critical", "action": "check service health and restart"}

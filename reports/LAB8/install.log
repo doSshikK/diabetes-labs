@@ -1,0 +1,101 @@
+Clean environment: /private/tmp/diabetes-lab8-clean-final5.GlUPyC
+Dependency snapshot: /Users/dariamitceva/diabetes-labs/.venv/lib/python3.11/site-packages
+WARNING: The directory '/Users/dariamitceva/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Processing ./.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: diabetes-labs
+  Building wheel for diabetes-labs (pyproject.toml): started
+  Building wheel for diabetes-labs (pyproject.toml): finished with status 'done'
+  Created wheel for diabetes-labs: filename=diabetes_labs-1.0.0-py3-none-any.whl size=56883 sha256=d25b59a79f45379dd017bf01a7892b6785daaa4757ee80a23fdb386311f7aed5
+  Stored in directory: /private/var/folders/0w/3wb420t57kx0_sdwx9zssgv40000gn/T/pip-ephem-wheel-cache-jh6gi43r/wheels/79/6f/1d/a26498d30335787e5b29ef84e5280460e006902371c1d0adf1
+Successfully built diabetes-labs
+
+[notice] A new release of pip is available: 26.2.2 -> 26.3
+[notice] To update, run: /Users/dariamitceva/diabetes-labs/.venv/bin/python -m pip install --upgrade pip
+WARNING: The directory '/Users/dariamitceva/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Processing /private/tmp/diabetes-lab8-wheel-final5.kghS8M/diabetes_labs-1.0.0-py3-none-any.whl
+Installing collected packages: diabetes-labs
+Successfully installed diabetes-labs-1.0.0
+
+[notice] A new release of pip is available: 26.0 -> 26.3
+[notice] To update, run: /private/tmp/diabetes-lab8-clean-final5.GlUPyC/bin/python3.11 -m pip install --upgrade pip
+WARNING: The directory '/Users/dariamitceva/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+No broken requirements found.
+usage: train_ml [-h] [--config CONFIG] [--source {real,synthetic}]
+
+Train the classical model
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG
+  --source {real,synthetic}
+usage: train_dl [-h] [--config CONFIG] [--source {real,synthetic}]
+
+Train the neural model
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG
+  --source {real,synthetic}
+usage: train_validator [-h] [--config CONFIG] [--source {real,synthetic}]
+
+Train the input validator
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG
+  --source {real,synthetic}
+usage: generate [-h] [--config CONFIG] [--source {real,synthetic}]
+
+Generate a controlled dataset
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG
+  --source {real,synthetic}
+usage: serve [-h] [--config CONFIG] [--source {real,synthetic}] [--host HOST]
+             [--port PORT] [--dry-run]
+
+Start the prediction service
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG
+  --source {real,synthetic}
+  --host HOST
+  --port PORT
+  --dry-run
+usage: evaluate [-h] [--config CONFIG] [--source {real,synthetic}]
+
+Evaluate all models for one source
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG
+  --source {real,synthetic}
+usage: monitor [-h] [--config CONFIG] [--source {real,synthetic}]
+
+Run alert drills
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG
+  --source {real,synthetic}
+Resolved versions:
+diabetes-labs==1.0.0
+pandas==2.3.3
+numpy==2.4.6
+scikit-learn==1.9.1
+torch==2.15.0
+pydantic==2.14.1
+PyYAML==6.0.3
+fastapi==0.162.0
+uvicorn==0.54.0
+joblib==1.6.0
+psutil==7.2.2
+matplotlib==3.11.2
+scipy==1.17.1
+evidently==0.7.23
+mlflow-skinny==3.17.2
+INSTALLATION PASSED

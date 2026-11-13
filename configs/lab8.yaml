@@ -1,0 +1,32 @@
+real_data_path: data/raw/diabetes.csv
+synthetic_data_path: data/synthetic/diabetes_similar.csv
+report_dir: reports/LAB8
+model_dir: reports/LAB8/models
+seed: 42
+test_size: 0.20
+
+ml_alpha: 0.10
+ml_l1_ratio: 0.50
+dl_hidden_sizes: [32, 16]
+dl_epochs: 80
+dl_learning_rate: 0.01
+validator_quantile: 0.99
+
+generated_rows: 2000
+drift_mean_shift_std: 2.0
+psi_bins: 10
+psi_alert_threshold: 0.30
+validator_rejection_alert_threshold: 0.90
+service_error_rate_alert_threshold: 0.01
+alert_deduplication_seconds: 600
+
+minimum_requests_per_stage: 10000
+warmup_duration_seconds: 300
+stage_duration_seconds: 600
+resource_sample_interval_seconds: 1.8
+lab6_p95_seconds: 0.005
+latency_limit_multiplier: 1.5
+maximum_false_alerts: 1
+maximum_batch_error_rate: 0.05
+maximum_health_detection_seconds: 30
+maximum_recovery_seconds: 120

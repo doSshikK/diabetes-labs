@@ -1,0 +1,103 @@
+{
+  "profile": "full_real_time",
+  "warmup": {
+    "stage": "warmup_synthetic",
+    "requests": 5000,
+    "successes": 5000,
+    "lost_requests": 0,
+    "success_rate": 1.0,
+    "elapsed_seconds": 300.00111529091373,
+    "rps": 16.666604706290695,
+    "p50_seconds": 0.0005765409441664815,
+    "p95_seconds": 0.0007952267827931792,
+    "p99_seconds": 0.000994125505676494,
+    "source": "synthetic"
+  },
+  "stages": [
+    {
+      "stage": "ml_clean",
+      "requests": 10000,
+      "successes": 10000,
+      "lost_requests": 0,
+      "success_rate": 1.0,
+      "elapsed_seconds": 600.007734416984,
+      "rps": 16.666451824519907,
+      "p50_seconds": 0.0031286455341614783,
+      "p95_seconds": 0.003972533391788601,
+      "p99_seconds": 0.004325126687763259
+    },
+    {
+      "stage": "dl_parallel",
+      "requests": 10000,
+      "successes": 10000,
+      "lost_requests": 0,
+      "success_rate": 1.0,
+      "elapsed_seconds": 600.0091480830451,
+      "rps": 16.666412557123106,
+      "p50_seconds": 0.0042643334600143135,
+      "p95_seconds": 0.005114018433960154,
+      "p99_seconds": 0.00544483338133432
+    },
+    {
+      "stage": "dl_varying_rps",
+      "requests": 10000,
+      "successes": 10000,
+      "lost_requests": 0,
+      "success_rate": 1.0,
+      "elapsed_seconds": 600.0067260829965,
+      "rps": 16.666479833122306,
+      "p50_seconds": 0.004515833454206586,
+      "p95_seconds": 0.005534639628604054,
+      "p99_seconds": 0.0058096873492468155,
+      "requests_per_interval": [
+        377,
+        755,
+        1132,
+        1509,
+        1887,
+        1510,
+        1132,
+        755,
+        566,
+        377
+      ]
+    },
+    {
+      "stage": "drift",
+      "requests": 10000,
+      "successes": 10000,
+      "lost_requests": 0,
+      "success_rate": 1.0,
+      "elapsed_seconds": 600.0057218330912,
+      "rps": 16.666507728374274,
+      "p50_seconds": 0.000536583480425179,
+      "p95_seconds": 0.0007856249576434493,
+      "p99_seconds": 0.0009550024382770062,
+      "validator_rejection_rate": 1.0,
+      "silent_foreign_accepts": 0
+    },
+    {
+      "stage": "rollback",
+      "requests": 10000,
+      "successes": 10000,
+      "lost_requests": 0,
+      "success_rate": 1.0,
+      "elapsed_seconds": 600.0032607920002,
+      "rps": 16.66657608960336,
+      "p50_seconds": 0.0007672709762118757,
+      "p95_seconds": 0.004219889309024437,
+      "p99_seconds": 0.004481503344140947,
+      "rollback_seconds": 6.792019121348858e-06,
+      "post_rollback_recovery_windows": 1
+    }
+  ],
+  "workers": 10,
+  "configured_minimum_requests": 10000,
+  "configured_stage_duration_seconds": 600,
+  "latency_limit_seconds": 0.0075,
+  "all_success_rates_pass": true,
+  "all_lost_requests_zero": true,
+  "latency_pass": true,
+  "drift_rejection_pass": true,
+  "rollback_pass": true
+}
