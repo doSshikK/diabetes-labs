@@ -10,6 +10,7 @@ from fastapi.testclient import TestClient
 from pydantic import ValidationError
 
 from lab8.config import Lab8Config, load_config
+from lab8.manifest import verify_manifest
 from lab8.pipeline import (
     create_service_app,
     load_source,
@@ -93,3 +94,27 @@ def test_fault_drills_pass(tmp_path: Path) -> None:
     result = run_fault_drills(config)
     assert result["passed"] is True
     assert all(result[name] is True for name in ("C1", "C2", "C3", "C4", "C5"))
+
+
+def test_artifact_manifest_detects_changes(tmp_path: Path) -> None:
+    root = tmp_path / "repository"
+    (root / ".git").mkdir(parents=True)
+    (root / "reports" / "LAB8").mkdir(parents=True)
+    (root / "result.txt").write_text("stable\n", encoding="utf-8")
+    output = root / "reports" / "LAB8" / "artifacts_manifest.json"
+    payload = {
+        "variant": "05 Diabetes",
+        "code_commit": "test",
+        "file_count": 1,
+        "files": [
+            {
+                "path": "result.txt",
+                "size_bytes": (root / "result.txt").stat().st_size,
+                "sha256": __import__("hashlib").sha256(b"stable\n").hexdigest(),
+            }
+        ],
+    }
+    output.write_text(json.dumps(payload), encoding="utf-8")
+    assert verify_manifest(root, output) == []
+    (root / "result.txt").write_text("changed\n", encoding="utf-8")
+    assert verify_manifest(root, output) == ["size mismatch: result.txt"]
