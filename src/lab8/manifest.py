@@ -7,7 +7,18 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
-IGNORED_PARTS = {".git", ".venv", ".pytest_cache", "__pycache__", "mlruns"}
+IGNORED_PARTS = {
+    ".git",
+    ".venv",
+    ".pytest_cache",
+    ".ruff_cache",
+    "__pycache__",
+    "build",
+    "diabetes_labs.egg-info",
+    "dist",
+    "mlruns",
+}
+IGNORED_NAMES = {".DS_Store", ".coverage"}
 
 
 def sha256_file(path: Path) -> str:
@@ -30,7 +41,7 @@ def included_files(root: Path, output: Path) -> list[Path]:
         for path in root.rglob("*")
         if path.is_file()
         and path != output
-        and path.name != ".DS_Store"
+        and path.name not in IGNORED_NAMES
         and not IGNORED_PARTS.intersection(path.relative_to(root).parts)
     )
 
