@@ -47,6 +47,8 @@ def build_manifest(root: Path, output: Path) -> dict[str, Any]:
     return {
         "variant": "05 Diabetes",
         "code_commit": current_commit(root),
+        "manifest_path": output.relative_to(root).as_posix(),
+        "manifest_self_hash_excluded": True,
         "file_count": len(files),
         "files": files,
     }
